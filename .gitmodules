@@ -1,0 +1,3 @@
+[submodule "rbackup"]
+	path = rbackup
+	url = git@github.com:pbosetti/rbackup.git
