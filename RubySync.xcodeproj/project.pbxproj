@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		888E7E64139D7D80008D706F /* profileManager.rb in Resources */ = {isa = PBXBuildFile; fileRef = 888E7E63139D7D80008D706F /* profileManager.rb */; };
 		88975A9E1396E19600D3E4E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88975A9D1396E19600D3E4E7 /* Cocoa.framework */; };
 		88975AA71396E19600D3E4E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88975AA51396E19600D3E4E7 /* InfoPlist.strings */; };
 		88975AAA1396E19600D3E4E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88975AA91396E19600D3E4E7 /* main.m */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		888E7E63139D7D80008D706F /* profileManager.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = profileManager.rb; sourceTree = "<group>"; };
 		88975A991396E19600D3E4E7 /* RubySync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RubySync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88975A9D1396E19600D3E4E7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		88975AA41396E19600D3E4E7 /* RubySync-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RubySync-Info.plist"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				88975AB21396E19600D3E4E7 /* AppDelegate.rb */,
+				888E7E63139D7D80008D706F /* profileManager.rb */,
 				88975AAB1396E19600D3E4E7 /* Resources */,
 				88975AAF1396E19600D3E4E7 /* Other Sources */,
 				88975AA31396E19600D3E4E7 /* Supporting Files */,
@@ -269,6 +272,7 @@
 				88975AB11396E19600D3E4E7 /* rb_main.rb in Resources */,
 				88975AB31396E19600D3E4E7 /* AppDelegate.rb in Resources */,
 				88975B5D1396E2D600D3E4E7 /* rbackup.rb in Resources */,
+				888E7E64139D7D80008D706F /* profileManager.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

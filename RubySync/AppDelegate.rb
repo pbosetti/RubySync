@@ -133,7 +133,7 @@ usb:
     puts "Closing"
     @@user_defaults.setObject @yamlArea.textStorage.mutableString, :forKey => :yaml_string
     puts "Defaults saved"
-    if @rsync_thread.alive?
+    if @rsync_thread && @rsync_thread.alive?
       self.setStatusText "Waiting for rsync to terminate"
       @rsync_thread.join
     end
