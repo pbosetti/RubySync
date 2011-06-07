@@ -97,9 +97,9 @@ class ProfileManager
   def esc(paths)
     paths = [ paths ].flatten
     paths.collect  { |path| 
-      if path =~ /^~/ then
-        path = path.stringByExpandingTildeInPath
-      end
+      #      if path =~ /^~/ then
+      #  path = path.stringByExpandingTildeInPath
+      #end
       path.gsub(' ', '\ ')
   }.join(' ')
   end
