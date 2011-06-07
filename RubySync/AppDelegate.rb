@@ -8,7 +8,7 @@
 require "yaml"
 
 resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
-require "#{resources_path}/rbackup"
+require "#{resources_path}/profileManager"
 
 class AppDelegate
   attr_accessor :ready, :rsyncRunning
@@ -50,7 +50,7 @@ usb:
   def applicationDidFinishLaunching(a_notification)
     @yamlArea.setFont NSFont.fontWithName("Menlo", size:10)
     @msgArea.setFont NSFont.fontWithName("Menlo", size:10)
-    @rbackup = RBackup.new(false, nil)
+    @profileManager = ProfileManager.new
     @configSelector.removeAllItems
     if @@user_defaults.objectForKey(:yaml_string)
         @yamlArea.insertText @@user_defaults.objectForKey(:yaml_string)
@@ -75,11 +75,10 @@ usb:
     case sender.state
     when NSOnState
       begin
-        @rbackup.yaml = YAML.load(@yamlArea.textStorage.mutableString)
+        @profileManager.load @yamlArea.textStorage.mutableString
         sender.setTitle "Valid"
         self.setStatusText "Valid configuration. Select profile and click Rsync button."
-        @rbackup.get_profiles
-        @configSelector.addItemsWithTitles @rbackup.names
+        @configSelector.addItemsWithTitles @profileManager.paths
         @configSelector.selectItemAtIndex 0
         self.setReady true
       rescue
@@ -100,24 +99,22 @@ usb:
       self.setStatusText "rsync already running: wait for termination."
     else
       active_profile = @configSelector.titleOfSelectedItem
-      @rbackup.args = active_profile
-      @rbackup.profiles = nil
-      @rbackup.get_profiles
-      self.setStatusText "Starting rsync..."
+      self.setStatusText "Starting rsync on #{active_profile}..."
       self.setRsyncRunning true
-      @rsync_thread = Thread.start(active_profile) do |p|
-        @msgArea.insertText "Starting rsync with profile #{active_profile}\n"
-        # @splitView.setPosition 0.0, ofDividerAtIndex:0
+      @rsync_thread = Thread.start(active_profile) do |profs|
         closeButton = window.standardWindowButton(NSWindowCloseButton)
         closeButton.setEnabled false
-        cmd_args = @rbackup.make_cmd(@rbackup.profiles[0])
-        cmd = "rsync " + (cmd_args * ' ')
-        @msgArea.insertText cmd.inspect
-        @msgArea.insertText `#{cmd}`
-        self.setStatusText "Profile #{p} successfully performed!"
+        @profileManager.select_path(profs).each do |prof,args|
+          @msgArea.insertText "\n\nStarting rsync with profile #{prof}\n"
+          cmd = "rsync " + (@profileManager.rsync_args(args) * ' ')
+          @msgArea.insertText cmd.inspect
+          @msgArea.insertText `#{cmd}`
+          self.setStatusText "Profile #{prof} successfully performed!"
+          #@msgArea.insertText `#{cmd}`
+          # @splitView.setPosition @splitView.bounds.size.width, ofDividerAtIndex:0
+        end
         self.setRsyncRunning false
         closeButton.setEnabled true
-        # @splitView.setPosition @splitView.bounds.size.width, ofDividerAtIndex:0
       end
     end
   end
