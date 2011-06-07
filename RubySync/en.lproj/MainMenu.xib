@@ -1387,10 +1387,9 @@
 								<string key="NSToolbarItemPaletteLabel">Configuration</string>
 								<nil key="NSToolbarItemToolTip"/>
 								<object class="NSButton" key="NSToolbarItemView" id="753530704">
-									<reference key="NSNextResponder"/>
+									<nil key="NSNextResponder"/>
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{0, 14}, {118, 25}}</string>
-									<reference key="NSSuperview"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="105973512">
 										<int key="NSCellFlags">67239424</int>
@@ -1429,10 +1428,9 @@
 								<string key="NSToolbarItemPaletteLabel">Profiles</string>
 								<nil key="NSToolbarItemToolTip"/>
 								<object class="NSPopUpButton" key="NSToolbarItemView" id="758226429">
-									<reference key="NSNextResponder"/>
+									<nil key="NSNextResponder"/>
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{0, 14}, {100, 25}}</string>
-									<reference key="NSSuperview"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSPopUpButtonCell" key="NSCell" id="632525688">
 										<int key="NSCellFlags">-2080244160</int>
@@ -1445,23 +1443,24 @@
 										<string key="NSKeyEquivalent"/>
 										<int key="NSPeriodicDelay">400</int>
 										<int key="NSPeriodicInterval">75</int>
-										<nil key="NSMenuItem"/>
+										<object class="NSMenuItem" key="NSMenuItem" id="220600290">
+											<reference key="NSMenu" ref="330634484"/>
+											<string key="NSTitle">Item 1</string>
+											<string key="NSKeyEquiv"/>
+											<int key="NSKeyEquivModMask">1048576</int>
+											<int key="NSMnemonicLoc">2147483647</int>
+											<int key="NSState">1</int>
+											<reference key="NSOnImage" ref="35465992"/>
+											<reference key="NSMixedImage" ref="502551668"/>
+											<string key="NSAction">_popUpItemAction:</string>
+											<reference key="NSTarget" ref="632525688"/>
+										</object>
 										<bool key="NSMenuItemRespectAlignment">YES</bool>
 										<object class="NSMenu" key="NSMenu" id="330634484">
 											<string key="NSTitle">OtherViews</string>
 											<object class="NSMutableArray" key="NSMenuItems">
 												<bool key="EncodedWithXMLCoder">YES</bool>
-												<object class="NSMenuItem" id="220600290">
-													<reference key="NSMenu" ref="330634484"/>
-													<string key="NSTitle">Item 1</string>
-													<string key="NSKeyEquiv"/>
-													<int key="NSKeyEquivModMask">1048576</int>
-													<int key="NSMnemonicLoc">2147483647</int>
-													<reference key="NSOnImage" ref="35465992"/>
-													<reference key="NSMixedImage" ref="502551668"/>
-													<string key="NSAction">_popUpItemAction:</string>
-													<reference key="NSTarget" ref="632525688"/>
-												</object>
+												<reference ref="220600290"/>
 												<object class="NSMenuItem" id="1056912453">
 													<reference key="NSMenu" ref="330634484"/>
 													<string key="NSTitle">Item 2</string>
@@ -1684,7 +1683,6 @@
 							<string key="NSFrame">{{365, 4}, {96, 12}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<int key="NSpiFlags">16650</int>
 							<double key="NSMaxValue">100</double>
@@ -1733,7 +1731,7 @@
 													<string key="NSFrameSize">{470, 14}</string>
 													<reference key="NSSuperview" ref="249810420"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView" ref="595071234"/>
+													<reference key="NSNextKeyView" ref="1069222487"/>
 													<int key="NSViewLayerContentsRedrawPolicy">2</int>
 													<object class="NSTextContainer" key="NSTextContainer" id="757884897">
 														<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1863,17 +1861,7 @@
 									<string key="NSFrameSize">{472, 250}</string>
 									<reference key="NSSuperview" ref="472070502"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="1069222487"/>
-									<object class="NSDictionary" key="NSViewAnimations">
-										<string key="NS.key.0">subviews</string>
-										<object class="CATransition" key="NS.object.0">
-											<string key="type">fade</string>
-											<object class="NSArray" key="__CACodingContents">
-												<bool key="EncodedWithXMLCoder">YES</bool>
-												<string>type</string>
-											</object>
-										</object>
-									</object>
+									<reference key="NSNextKeyView" ref="249810420"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<int key="NSsFlags">562</int>
 									<reference key="NSVScroller" ref="595071234"/>
@@ -1919,7 +1907,7 @@
 													<string key="NSFrameSize">{0, 133}</string>
 													<reference key="NSSuperview" ref="319805376"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView" ref="736161329"/>
+													<reference key="NSNextKeyView" ref="876472428"/>
 													<int key="NSViewLayerContentsRedrawPolicy">2</int>
 													<object class="NSTextContainer" key="NSTextContainer" id="131755846">
 														<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1941,7 +1929,7 @@
 														<int key="NSTCFlags">1</int>
 													</object>
 													<object class="NSTextViewSharedData" key="NSSharedData">
-														<int key="NSFlags">12263</int>
+														<int key="NSFlags">11075</int>
 														<int key="NSTextCheckingTypes">0</int>
 														<nil key="NSMarkedAttributes"/>
 														<reference key="NSBackgroundColor" ref="297523883"/>
@@ -1979,6 +1967,10 @@
 													<int key="NSTVFlags">6</int>
 													<string key="NSMaxSize">{463, 1e+07}</string>
 													<nil key="NSDelegate"/>
+													<object class="NSArray" key="NSAllowedInputLocales">
+														<bool key="EncodedWithXMLCoder">YES</bool>
+														<string>NSAllRomanInputSourcesLocaleIdentifier</string>
+													</object>
 												</object>
 											</object>
 											<string key="NSFrame">{{1, 1}, {0, 248}}</string>
@@ -2022,17 +2014,7 @@
 									<string key="NSFrame">{{481, 0}, {0, 250}}</string>
 									<reference key="NSSuperview" ref="472070502"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="876472428"/>
-									<object class="NSDictionary" key="NSViewAnimations">
-										<string key="NS.key.0">subviews</string>
-										<object class="CATransition" key="NS.object.0">
-											<string key="type">fade</string>
-											<object class="NSArray" key="__CACodingContents">
-												<bool key="EncodedWithXMLCoder">YES</bool>
-												<string>type</string>
-											</object>
-										</object>
-									</object>
+									<reference key="NSNextKeyView" ref="319805376"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<int key="NSsFlags">530</int>
 									<reference key="NSVScroller" ref="605022049"/>
@@ -2044,7 +2026,6 @@
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="820637871"/>
-							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSIsVertical">YES</bool>
 						</object>
@@ -2950,6 +2931,26 @@
 						<reference key="destination" ref="1023925487"/>
 					</object>
 					<int key="connectionID">669</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">attributedString: messageLog</string>
+						<reference key="source" ref="1030411932"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1030411932"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">attributedString: messageLog</string>
+							<string key="NSBinding">attributedString</string>
+							<string key="NSKeyPath">messageLog</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+								<boolean value="YES" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">675</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4801,7 +4802,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">669</int>
+			<int key="maxID">675</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4867,6 +4868,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>configSelector</string>
+							<string>messageLog</string>
 							<string>msgArea</string>
 							<string>ready</string>
 							<string>rsyncRunning</string>
@@ -4877,6 +4879,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4892,6 +4895,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>configSelector</string>
+							<string>messageLog</string>
 							<string>msgArea</string>
 							<string>ready</string>
 							<string>rsyncRunning</string>
@@ -4904,6 +4908,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">configSelector</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">messageLog</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">

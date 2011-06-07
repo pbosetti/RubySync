@@ -19,6 +19,7 @@ class AppDelegate
   attr_accessor :configSelector
   attr_accessor :statusText
   attr_accessor :splitView
+  attr_accessor :messageLog
 
   @@user_defaults = NSUserDefaults.standardUserDefaults
   @@defaultFile = "#{ENV['HOME']}/.rbackup.yml"
@@ -104,27 +105,44 @@ usb:
       active_profile = @configSelector.titleOfSelectedItem
       self.setStatusText "Starting rsync on #{active_profile}..."
       self.setRsyncRunning true
+      #profs = active_profile
       @rsync_thread = Thread.start(active_profile) do |profs|
         closeButton = window.standardWindowButton(NSWindowCloseButton)
         closeButton.setEnabled false
         @profileManager.select_path(profs).each do |prof,args|
           @msgArea.insertText "\n\nStarting rsync with profile #{prof}\n"
           cmd = "rsync " + (@profileManager.rsync_args(args) * ' ')
-          @msgArea.insertText cmd.inspect
-          @msgArea.insertText `#{cmd}`
+          #@msgArea.insertText cmd.inspect
+          #@msgArea.insertText `#{cmd}`
+          reader, writer = IO.pipe 
+          @rsync_pid = spawn(cmd, [ STDERR, STDOUT ] => writer) 
+          writer.close
+          while out = reader.gets do
+            puts out
+            #@msgArea.insertText out
+          end
+          @rsync_pid = nil
           self.setStatusText "Profile #{prof} successfully performed!"
+          break if @abort
         end
         self.setRsyncRunning false
         closeButton.setEnabled true
+        @abort = false
+        puts "Thread exiting"
       end
     end
   end
   
   def terminate(sender)
-    @rsync_thread.exit if @rsync_thread.alive?
-    self.setStatusText "Profile #{@rbackup.args} currently is #{@rsync_thread.status.to_s}"
-    self.setRsyncRunning false
-    window.standardWindowButton(NSWindowCloseButton).setEnabled true
+    if @rsync_pid then
+      puts "Killing PID #{@rsync_pid}"
+      Process.kill(:KILL, @rsync_pid)
+    end
+    @abort = true
+    #@rsync_thread.exit if @rsync_thread.alive?
+    #self.setStatusText "Profile #{@configSelector.titleOfSelectedItem} currently is #{@rsync_thread.status.to_s}"
+    #self.setRsyncRunning false
+    #window.standardWindowButton(NSWindowCloseButton).setEnabled true
   end
       
   def applicationWillTerminate(a_notification)

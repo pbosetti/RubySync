@@ -6,6 +6,7 @@
 #  Copyright 2011 Dipartimento di Ingegneria Meccanica e Strutturale. All rights reserved.
 #
 require "yaml"
+require "fileutils"
 
 class ProfileManager
   attr_reader :profiles_data, :paths

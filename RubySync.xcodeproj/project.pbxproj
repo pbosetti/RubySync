@@ -19,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		888E7E63139D7D80008D706F /* profileManager.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = profileManager.rb; sourceTree = "<group>"; };
+		888E7E76139DBAB2008D706F /* test.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = test.rb; sourceTree = "<group>"; };
 		88975A991396E19600D3E4E7 /* RubySync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RubySync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88975A9D1396E19600D3E4E7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		88975AA41396E19600D3E4E7 /* RubySync-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RubySync-Info.plist"; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				88975AB21396E19600D3E4E7 /* AppDelegate.rb */,
+				888E7E76139DBAB2008D706F /* test.rb */,
 				888E7E63139D7D80008D706F /* profileManager.rb */,
 				88975AAB1396E19600D3E4E7 /* Resources */,
 				88975AAF1396E19600D3E4E7 /* Other Sources */,
