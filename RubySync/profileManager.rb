@@ -65,12 +65,12 @@ class ProfileManager
     # -E, --extended-attributes copy extended attributes, resource forks
     
     if profile['delete'].nil? || profile['delete']
-      options << "--delete "
+      options << "--delete"
       # --delete                  delete extraneous files from dest dirs
     end
     
     if destination.include?(':') || source.include?(':')
-      options << ' -e ssh'
+      options << '-e /usr/bin/ssh'
       # -e, --rsh=COMMAND         specify the remote shell to use
     else
       FileUtils.mkdir_p destination
@@ -96,7 +96,12 @@ class ProfileManager
   private
   def esc(paths)
     paths = [ paths ].flatten
-    paths.collect  { |path| path.gsub(' ', '\ ') }.join(' ')
+    paths.collect  { |path| 
+      if path =~ /^~/ then
+        path = path.stringByExpandingTildeInPath
+      end
+      path.gsub(' ', '\ ')
+  }.join(' ')
   end
   
 end
