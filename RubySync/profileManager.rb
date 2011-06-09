@@ -55,18 +55,25 @@ class ProfileManager
     destination = profile['destination']
     source = profile['source']
     
-    options = %w|--numeric-ids --safe-links -axzSvLE|
+    options = %w|--numeric-ids --safe-links --executability -auxzSvLE|
     # --numeric-ids               don't map uid/gid values by user/group name
     # --safe-links                ignore symlinks that point outside the tree
     # -a, --archive               recursion and preserve almost everything (-rlptgoD)
+    # -u, --update                skip files that are newer on the receiver
     # -x, --one-file-system       don't cross filesystem boundaries
     # -z, --compress              compress file data during the transfer
     # -S, --sparse                handle sparse files efficiently
     # -v, --verbose               verbose
     # -E, --extended-attributes copy extended attributes, resource forks
+    # --executability         preserve executability
     
-    if profile['delete'].nil? || profile['delete']
+    if profile['delete']
       options << "--delete"
+      # --delete                  delete extraneous files from dest dirs
+    end
+    
+    if profile['dry']
+      options << "--dry-run"
       # --delete                  delete extraneous files from dest dirs
     end
     

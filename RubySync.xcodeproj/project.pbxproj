@@ -17,6 +17,16 @@
 		88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		88A0974913A1694200DF7A0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88975A901396E19500D3E4E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88975A981396E19500D3E4E7;
+			remoteInfo = RubySync;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		888E7E63139D7D80008D706F /* profileManager.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = profileManager.rb; sourceTree = "<group>"; };
 		888E7E76139DBAB2008D706F /* test.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = test.rb; sourceTree = "<group>"; };
@@ -122,6 +132,7 @@
 			);
 			buildToolPath = /usr/local/bin/macruby_deploy;
 			dependencies = (
+				88A0974A13A1694200DF7A0E /* PBXTargetDependency */,
 			);
 			name = Deployment;
 			passBuildSettingsInEnvironment = 1;
@@ -198,6 +209,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88A0974A13A1694200DF7A0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88975A981396E19500D3E4E7 /* RubySync */;
+			targetProxy = 88A0974913A1694200DF7A0E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		88975AA51396E19600D3E4E7 /* InfoPlist.strings */ = {

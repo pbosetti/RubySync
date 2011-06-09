@@ -105,32 +105,85 @@ usb:
       active_profile = @configSelector.titleOfSelectedItem
       self.setStatusText "Starting rsync on #{active_profile}..."
       self.setRsyncRunning true
-      #profs = active_profile
+      @msgArea.setString "Starting rsync on #{active_profile}..."
       @rsync_thread = Thread.start(active_profile) do |profs|
         closeButton = window.standardWindowButton(NSWindowCloseButton)
-        closeButton.setEnabled false
+        closeButton.performSelectorOnMainThread("setEnabled:",
+                                                withObject:false,
+                                                waitUntilDone:true)
         @profileManager.select_path(profs).each do |prof,args|
-          @msgArea.insertText "\n\nStarting rsync with profile #{prof}\n"
+          @msgArea.performSelectorOnMainThread("insertText:",
+                                               withObject:"\n\nStarting rsync with profile #{prof}\n",
+                                               waitUntilDone:true)
           cmd = "rsync " + (@profileManager.rsync_args(args) * ' ')
-          #@msgArea.insertText cmd.inspect
-          #@msgArea.insertText `#{cmd}`
+          @msgArea.performSelectorOnMainThread "insertText:", withObject:"#{cmd}\n", waitUntilDone:true 
           reader, writer = IO.pipe 
           @rsync_pid = spawn(cmd, [ STDERR, STDOUT ] => writer) 
           writer.close
           while out = reader.gets do
-            puts out
-            #@msgArea.insertText out
+            @msgArea.performSelectorOnMainThread "insertText:", withObject:out, waitUntilDone:false 
           end
           @rsync_pid = nil
-          self.setStatusText "Profile #{prof} successfully performed!"
+          self.performSelectorOnMainThread("setStatusText:",
+                                           withObject:"Profile #{prof} successfully performed!",
+                                           waitUntilDone:true)
           break if @abort
         end
-        self.setRsyncRunning false
-        closeButton.setEnabled true
+        self.performSelectorOnMainThread("setRsyncRunning:",
+                                         withObject:false,
+                                         waitUntilDone:true)
+        closeButton.performSelectorOnMainThread("setEnabled:",
+                                                withObject:true,
+                                                waitUntilDone:true)
         @abort = false
         puts "Thread exiting"
       end
     end
+  end
+  
+  def runThreaded(sender)
+    if rsyncRunning then
+      self.setStatusText "rsync already running: wait for termination."
+    else
+      active_profile = @configSelector.titleOfSelectedItem
+      self.setStatusText "Starting rsync on #{active_profile}..."
+      self.setRsyncRunning true
+      @rsyncNSThread = NSThread.alloc.initWithTarget(self,
+                                                     selector:'performRsync:',
+                                                     object:active_profile)
+      @rsyncNSThread.start
+    end
+  end
+    
+  def performRsync(active_profile)
+    closeButton = window.standardWindowButton(NSWindowCloseButton)
+    closeButton.setEnabled false
+    areaLock = NSLock.new
+    puts "****click!"
+    @profileManager.select_path(active_profile).each do |prof,args|
+      puts "****click!"
+      areaLock.lock
+      #@msgArea.insertText "\n\nStarting rsync with profile #{prof}\n"
+      puts "****click!"
+      cmd = "rsync " + (@profileManager.rsync_args(args) * ' ')
+      #@msgArea.insertText cmd.inspect
+      #@msgArea.insertText `#{cmd}`
+      reader, writer = IO.pipe 
+      @rsync_pid = spawn(cmd, [ STDERR, STDOUT ] => writer) 
+      writer.close
+      while out = reader.gets do
+        #puts out
+        @msgArea.performSelectorOnMainThread "insertText:", withObject:out, waitUntilDone:true
+      end
+      @rsync_pid = nil
+      self.setStatusText "Profile #{prof} successfully performed!"
+      areaLock.unlock
+      break if @abort
+    end
+    self.setRsyncRunning false
+    closeButton.setEnabled true
+    @abort = false
+    puts "Thread exiting"
   end
   
   def terminate(sender)

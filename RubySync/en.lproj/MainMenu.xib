@@ -1683,6 +1683,7 @@
 							<string key="NSFrame">{{365, 4}, {96, 12}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<int key="NSpiFlags">16650</int>
 							<double key="NSMaxValue">100</double>
@@ -1731,7 +1732,7 @@
 													<string key="NSFrameSize">{470, 14}</string>
 													<reference key="NSSuperview" ref="249810420"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView" ref="1069222487"/>
+													<reference key="NSNextKeyView" ref="595071234"/>
 													<int key="NSViewLayerContentsRedrawPolicy">2</int>
 													<object class="NSTextContainer" key="NSTextContainer" id="757884897">
 														<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1861,7 +1862,7 @@
 									<string key="NSFrameSize">{472, 250}</string>
 									<reference key="NSSuperview" ref="472070502"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="249810420"/>
+									<reference key="NSNextKeyView" ref="1069222487"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<int key="NSsFlags">562</int>
 									<reference key="NSVScroller" ref="595071234"/>
@@ -1881,33 +1882,10 @@
 												<object class="NSTextView" id="1030411932">
 													<reference key="NSNextResponder" ref="319805376"/>
 													<int key="NSvFlags">2322</int>
-													<object class="NSMutableSet" key="NSDragTypes">
-														<bool key="EncodedWithXMLCoder">YES</bool>
-														<object class="NSArray" key="set.sortedObjects">
-															<bool key="EncodedWithXMLCoder">YES</bool>
-															<string>Apple HTML pasteboard type</string>
-															<string>Apple PDF pasteboard type</string>
-															<string>Apple PICT pasteboard type</string>
-															<string>Apple PNG pasteboard type</string>
-															<string>Apple URL pasteboard type</string>
-															<string>CorePasteboardFlavorType 0x6D6F6F76</string>
-															<string>NSColor pasteboard type</string>
-															<string>NSFilenamesPboardType</string>
-															<string>NSStringPboardType</string>
-															<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
-															<string>NeXT RTFD pasteboard type</string>
-															<string>NeXT Rich Text Format v1.0 pasteboard type</string>
-															<string>NeXT TIFF v4.0 pasteboard type</string>
-															<string>NeXT font pasteboard type</string>
-															<string>NeXT ruler pasteboard type</string>
-															<string>WebURLsWithTitlesPboardType</string>
-															<string>public.url</string>
-														</object>
-													</object>
 													<string key="NSFrameSize">{0, 133}</string>
 													<reference key="NSSuperview" ref="319805376"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView" ref="876472428"/>
+													<reference key="NSNextKeyView" ref="736161329"/>
 													<int key="NSViewLayerContentsRedrawPolicy">2</int>
 													<object class="NSTextContainer" key="NSTextContainer" id="131755846">
 														<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1929,7 +1907,7 @@
 														<int key="NSTCFlags">1</int>
 													</object>
 													<object class="NSTextViewSharedData" key="NSSharedData">
-														<int key="NSFlags">11075</int>
+														<int key="NSFlags">10497</int>
 														<int key="NSTextCheckingTypes">0</int>
 														<nil key="NSMarkedAttributes"/>
 														<reference key="NSBackgroundColor" ref="297523883"/>
@@ -2014,7 +1992,7 @@
 									<string key="NSFrame">{{481, 0}, {0, 250}}</string>
 									<reference key="NSSuperview" ref="472070502"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="319805376"/>
+									<reference key="NSNextKeyView" ref="876472428"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<int key="NSsFlags">530</int>
 									<reference key="NSVScroller" ref="605022049"/>
@@ -2036,7 +2014,7 @@
 					<reference key="NSNextKeyView" ref="472070502"/>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{480, 342}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 				<string key="NSFrameAutosaveName">RubySync_MainWindow</string>
@@ -2733,14 +2711,6 @@
 					<int key="connectionID">599</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">run:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="722580694"/>
-					</object>
-					<int key="connectionID">605</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: ready</string>
 						<reference key="source" ref="722580694"/>
@@ -2933,24 +2903,28 @@
 					<int key="connectionID">669</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">run:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="722580694"/>
+					</object>
+					<int key="connectionID">677</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">attributedString: messageLog</string>
+						<string key="label">editable: rsyncRunning</string>
 						<reference key="source" ref="1030411932"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1030411932"/>
 							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">attributedString: messageLog</string>
-							<string key="NSBinding">attributedString</string>
-							<string key="NSKeyPath">messageLog</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
-								<boolean value="YES" key="NS.object.0"/>
-							</object>
+							<string key="NSLabel">editable: rsyncRunning</string>
+							<string key="NSBinding">editable</string>
+							<string key="NSKeyPath">rsyncRunning</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">675</int>
+					<int key="connectionID">679</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4802,7 +4776,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">675</int>
+			<int key="maxID">679</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4816,12 +4790,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>insertExample:</string>
 							<string>run:</string>
+							<string>runThreaded:</string>
 							<string>saveYAML:</string>
 							<string>terminate:</string>
 							<string>validate:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4835,6 +4811,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>insertExample:</string>
 							<string>run:</string>
+							<string>runThreaded:</string>
 							<string>saveYAML:</string>
 							<string>terminate:</string>
 							<string>validate:</string>
@@ -4847,6 +4824,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">run:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">runThreaded:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
