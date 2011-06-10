@@ -14,6 +14,9 @@
 		88975AAE1396E19600D3E4E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88975AAC1396E19600D3E4E7 /* MainMenu.xib */; };
 		88975AB11396E19600D3E4E7 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 88975AB01396E19600D3E4E7 /* rb_main.rb */; };
 		88975AB31396E19600D3E4E7 /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 88975AB21396E19600D3E4E7 /* AppDelegate.rb */; };
+		88A0976413A196AE00DF7A0E /* RubySync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976313A196AE00DF7A0E /* RubySync.icns */; };
+		88A0976613A19A0B00DF7A0E /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976513A19A0B00DF7A0E /* menuIcon.png */; };
+		88A0976813A19A7100DF7A0E /* menuIcon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976713A19A7100DF7A0E /* menuIcon_small.png */; };
 		88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +42,9 @@
 		88975AAD1396E19600D3E4E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		88975AB01396E19600D3E4E7 /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		88975AB21396E19600D3E4E7 /* AppDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = AppDelegate.rb; sourceTree = "<group>"; };
+		88A0976313A196AE00DF7A0E /* RubySync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = RubySync.icns; sourceTree = SOURCE_ROOT; };
+		88A0976513A19A0B00DF7A0E /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
+		88A0976713A19A7100DF7A0E /* menuIcon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon_small.png; sourceTree = "<group>"; };
 		88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = ../../../../Library/Frameworks/MacRuby.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +114,9 @@
 		88975AAB1396E19600D3E4E7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88A0976713A19A7100DF7A0E /* menuIcon_small.png */,
+				88A0976513A19A0B00DF7A0E /* menuIcon.png */,
+				88A0976313A196AE00DF7A0E /* RubySync.icns */,
 				88975AAC1396E19600D3E4E7 /* MainMenu.xib */,
 			);
 			name = Resources;
@@ -194,6 +203,9 @@
 				88975AB11396E19600D3E4E7 /* rb_main.rb in Resources */,
 				88975AB31396E19600D3E4E7 /* AppDelegate.rb in Resources */,
 				888E7E64139D7D80008D706F /* profileManager.rb in Resources */,
+				88A0976413A196AE00DF7A0E /* RubySync.icns in Resources */,
+				88A0976613A19A0B00DF7A0E /* menuIcon.png in Resources */,
+				88A0976813A19A7100DF7A0E /* menuIcon_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

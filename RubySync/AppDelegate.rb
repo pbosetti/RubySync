@@ -20,7 +20,8 @@ class AppDelegate
   attr_accessor :statusText
   attr_accessor :splitView
   attr_accessor :messageLog
-
+  attr_accessor :systemMenu
+  
   @@user_defaults = NSUserDefaults.standardUserDefaults
   @@defaultFile = "#{ENV['HOME']}/.rbackup.yml"
   @@example = <<-EXAMPLE
@@ -63,6 +64,17 @@ usb:
     self.setStatusText ""
     @splitView.setAutosaveName "splitView"
     @environment = NSProcessInfo.processInfo.environment
+    activateStatusMenu
+  end
+  
+  def activateStatusMenu
+    image = NSImage.imageNamed("menuIcon_small.png")
+    bar = NSStatusBar.systemStatusBar
+    @menuBarItem = bar.statusItemWithLength NSVariableStatusItemLength
+    #@menuBarItem.setTitle "RubySync"
+    @menuBarItem.setImage image
+    @menuBarItem.setHighlightMode true
+    @menuBarItem.setMenu systemMenu
   end
   
   def insertExample(sender)
@@ -209,7 +221,7 @@ usb:
   end
   
   def applicationShouldTerminateAfterLastWindowClosed(application)
-    true
+    false
   end
   
 end
