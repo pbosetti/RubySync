@@ -5,6 +5,9 @@
 #  Created by Paolo Bosetti on 6/6/11.
 #  Copyright 2011 Dipartimento di Ingegneria Meccanica e Strutturale. All rights reserved.
 #
+#  Based on code developed by Winton Welsh (http://github.com/winton) for rbackup gem.
+#
+
 require "yaml"
 require "fileutils"
 

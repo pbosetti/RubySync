@@ -12,11 +12,6 @@ require "#{RESOURCES_PATH}/profileManager"
 
 #(fold)
 EXAMPLE = <<-EXAMPLE_STRING
-test:
-  source: ~/Desktop/Art
-  destination: ~/Desktop/rsync
-  exclude: 
-    - Art/p4010.png
 site:
   server:
     source: /Users/me/site
@@ -34,6 +29,7 @@ usb:
   pictures:
     source: ~/Pictures
     destination: /Volumes/USB Key
+    delete: truer
     include:
       - Favorites
 EXAMPLE_STRING
@@ -50,7 +46,7 @@ class Preferences < Hash
       "dry"   => false
       })
     self["appMode"] = (userDef("appMode") || 1)
-    self["yaml_string"] = (userDef("yaml_string") || EXAMPLE_STRING)
+    self["yaml_string"] = (userDef("yaml_string") || EXAMPLE)
     self["lastSyncDate"] = (userDef("lastSyncDate") || "Unknown")
     self["lastSyncProfile"] = (userDef("lastSyncProfile") || "Unknown")
   end
