@@ -7,44 +7,11 @@
 #
 require "yaml"
 
-resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
-require "#{resources_path}/profileManager"
+RESOURCES_PATH = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
+require "#{RESOURCES_PATH}/profileManager"
 
-# see http://ofps.oreilly.com/titles/9781449380373/_foundation.html
-
-class Preferences < NSMutableDictionary
-  attr_accessor :prefs
-  def init
-    @userDefaults = NSUserDefaults.standardUserDefaults
-    unless userDef[:defaults] then
-      userDef[:defaults] = {
-        
-      }
-  end
-  
-  def userDef[](key)
-    @userDefaults.objectForKey(key)
-  end
-  
-  def userDef[]=(key, value)
-    @userDefaults.setObject value, forKey:key
-  end
-end
-
-class AppDelegate
-  attr_accessor :ready, :rsyncRunning
-  attr_accessor :window
-  attr_accessor :yamlArea, :msgArea
-  attr_accessor :configSelector
-  attr_accessor :statusText
-  attr_accessor :splitView
-  attr_accessor :messageLog
-  attr_accessor :systemMenu, :lastSyncMenuItem, :lastProfileMenuItem
-  
-  @@user_defaults = NSUserDefaults.standardUserDefaults
-  @@defaultFile = "#{ENV['HOME']}/.rbackup.yml"
 #(fold)
-  @@example = <<-EXAMPLE
+EXAMPLE = <<-EXAMPLE_STRING
 test:
   source: ~/Desktop/Art
   destination: ~/Desktop/rsync
@@ -69,24 +36,75 @@ usb:
     destination: /Volumes/USB Key
     include:
       - Favorites
-  EXAMPLE
+EXAMPLE_STRING
 #(end)  
+
+# see http://ofps.oreilly.com/titles/9781449380373/_foundation.html
+
+class Preferences < Hash
+  def initialize
+    @userDefaults = NSUserDefaults.standardUserDefaults
+    self["rsyncOpts"] = (userDef("defaults") || {
+      "update"   => false,
+      "delete" => false,
+      "dry"   => false
+      })
+    self["appMode"] = (userDef("appMode") || 1)
+    self["yaml_string"] = (userDef("yaml_string") || EXAMPLE_STRING)
+    self["lastSyncDate"] = (userDef("lastSyncDate") || "Unknown")
+    self["lastSyncProfile"] = (userDef("lastSyncProfile") || "Unknown")
+  end
+  
+  def save
+    each do |key, value|
+      setUserDef(key, value)
+    end
+  end
+  
+  def userDef(key)
+    @userDefaults.objectForKey(key)
+  end
+  
+  def setUserDef(key, value)
+    @userDefaults.setObject value, forKey:key
+  end
+end
+
+class AppDelegate
+  attr_accessor :ready, :rsyncRunning
+  attr_accessor :window, :mainMenu, :application, :quitMenuItem
+  attr_accessor :yamlArea, :msgArea
+  attr_accessor :configSelector
+  attr_accessor :statusText
+  attr_accessor :splitView
+  attr_accessor :messageLog
+  attr_accessor :systemMenu, :lastSyncMenuItem, :lastProfileMenuItem
+  attr_accessor :prefs
+  
+  @@defaultFile = "#{ENV['HOME']}/.rbackup.yml"
+  def initialize
+    @prefs = Preferences.new
+  end
+  
   def applicationDidFinishLaunching(a_notification)
     @yamlArea.setFont NSFont.fontWithName("Menlo", size:10)
     @msgArea.setFont NSFont.fontWithName("Menlo", size:10)
     @profileManager = ProfileManager.new
+    @afs = DockStatusManager.new
+    @afs.setDockStatus(prefs["appMode"] == 1)
+    
     @configSelector.removeAllItems
-    if @@user_defaults.objectForKey(:yaml_string)
-      @yamlArea.insertText @@user_defaults.objectForKey(:yaml_string)
-    end
+    @yamlArea.insertText prefs["yaml_string"]
     self.setReady false
     self.setRsyncRunning false
     self.setStatusText ""
     @splitView.setAutosaveName "splitView"
-    @environment = NSProcessInfo.processInfo.environment
-    activateStatusMenu
-    lastSyncDate = (@@user_defaults.objectForKey(:lastSyncDate) || "unknown")
-    lastSyncProfile = (@@user_defaults.objectForKey(:lastSyncProfile) || "unknown")
+    
+    activateStatusMenu unless prefs["appMode"] == 1
+    window.makeKeyAndOrderFront(self) if prefs["appMode"] == 1
+    systemMenu.removeItem quitMenuItem if prefs["appMode"] == 1
+    lastSyncDate = prefs["lastSyncDate"]
+    lastSyncProfile = prefs["lastSyncProfile"]
     @lastSyncMenuItem.setTitle "Last Sync: #{lastSyncDate}"
     @lastProfileMenuItem.setTitle "Last Profile: #{lastSyncProfile}"
   end
@@ -95,7 +113,6 @@ usb:
     image = NSImage.imageNamed("menuIcon_small.png")
     bar = NSStatusBar.systemStatusBar
     @menuBarItem = bar.statusItemWithLength NSVariableStatusItemLength
-    #@menuBarItem.setTitle "RubySync"
     @menuBarItem.setImage image
     @menuBarItem.setHighlightMode true
     @menuBarItem.setMenu systemMenu
@@ -103,7 +120,7 @@ usb:
   
   def insertExample(sender)
     @splitView.setPosition @splitView.bounds.size.width, ofDividerAtIndex:0
-    @yamlArea.insertText @@example
+    @yamlArea.insertText EXAMPLE_STRING
   end
   
   def saveYAML(sender)
@@ -121,7 +138,8 @@ usb:
         @configSelector.addItemsWithTitles @profileManager.paths
         @configSelector.selectItemAtIndex 0
         self.setReady true
-        @@user_defaults.setObject @yamlArea.textStorage.mutableString, :forKey => :yaml_string
+        prefs["yaml_string"] = @yamlArea.textStorage.mutableString
+        prefs.save
       rescue
         self.setStatusText "Validation Error #{$!}"
         sender.setState NSOffState
@@ -141,35 +159,40 @@ usb:
     else
       activeProfile = @configSelector.titleOfSelectedItem
       now = Time.now.to_s
-      @@user_defaults.setObject now, :forKey => :lastSyncDate
-      @@user_defaults.setObject activeProfile, :forKey => :lastSyncProfile
+      prefs.setObject now, :forKey => :lastSyncDate
+      prefs.setObject activeProfile, :forKey => :lastSyncProfile
       @lastSyncMenuItem.setTitle "Last Sync: #{now}"
       @lastProfileMenuItem.setTitle "Last Profile: #{activeProfile}"
       self.setStatusText "Starting rsync on #{activeProfile}..."
       self.setRsyncRunning true
       @msgArea.setString "Starting rsync on #{activeProfile}..."
+      @profileManager.optList = prefs["rsyncOpts"]
       @rsync_thread = Thread.start(activeProfile) do |profs|
         closeButton = window.standardWindowButton(NSWindowCloseButton)
         closeButton.performSelectorOnMainThread("setEnabled:",
                                                 withObject:false,
                                                 waitUntilDone:true)
-        @profileManager.select_path(profs).each do |prof,args|
-          @msgArea.performSelectorOnMainThread("insertText:",
-                                               withObject:"\n\nStarting rsync with profile #{prof}\n",
-                                               waitUntilDone:true)
-          cmd = "rsync " + (@profileManager.rsync_args(args) * ' ')
-          @msgArea.performSelectorOnMainThread "insertText:", withObject:"#{cmd}\n", waitUntilDone:true 
-          reader, writer = IO.pipe 
-          @rsync_pid = spawn(cmd, [ STDERR, STDOUT ] => writer) 
-          writer.close
-          while out = reader.gets do
-            @msgArea.performSelectorOnMainThread "insertText:", withObject:out, waitUntilDone:false 
+        begin
+          @profileManager.select_path(profs).each do |prof,args|
+            @msgArea.performSelectorOnMainThread("insertText:",
+                                                 withObject:"\n\nStarting rsync with profile #{prof}\n",
+                                                 waitUntilDone:true)
+            cmd = "rsync " + (@profileManager.rsync_args(args) * ' ')
+            @msgArea.performSelectorOnMainThread "insertText:", withObject:"#{cmd}\n", waitUntilDone:true 
+            reader, writer = IO.pipe 
+            @rsync_pid = spawn(cmd, [ STDERR, STDOUT ] => writer) 
+            writer.close
+            while out = reader.gets do
+              @msgArea.performSelectorOnMainThread "insertText:", withObject:out, waitUntilDone:false 
+            end
+            @rsync_pid = nil
+            self.performSelectorOnMainThread("setStatusText:",
+                                             withObject:"Profile #{prof} successfully performed!",
+                                             waitUntilDone:true)
+            break if @abort
           end
-          @rsync_pid = nil
-          self.performSelectorOnMainThread("setStatusText:",
-                                           withObject:"Profile #{prof} successfully performed!",
-                                           waitUntilDone:true)
-          break if @abort
+        rescue
+          puts "Error #{$!}"
         end
         self.performSelectorOnMainThread("setRsyncRunning:",
                                          withObject:false,
@@ -235,17 +258,17 @@ usb:
     end
     @abort = true
     #@rsync_thread.exit if @rsync_thread.alive?
-    #self.setStatusText "Profile #{@configSelector.titleOfSelectedItem} currently is #{@rsync_thread.status.to_s}"
-    #self.setRsyncRunning false
-    #window.standardWindowButton(NSWindowCloseButton).setEnabled true
   end
   
   def windowWillClose(aNotification)
+    puts "Saving preferences"
+    prefs.save
   end
     
   def applicationWillTerminate(a_notification)
     puts "Closing"
-    @@user_defaults.setObject @yamlArea.textStorage.mutableString, :forKey => :yaml_string
+    prefs.setObject @yamlArea.textStorage.mutableString, :forKey => :yaml_string
+    prefs.save
     puts "Defaults saved"
     if @rsync_thread && @rsync_thread.alive?
       self.setStatusText "Waiting for rsync to terminate"
@@ -255,6 +278,7 @@ usb:
   
   def applicationShouldTerminateAfterLastWindowClosed(application)
     false
+    #prefs.valueForKeyPath("defaults.appMode") == 1
   end
   
 end

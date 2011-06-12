@@ -10,7 +10,9 @@ require "fileutils"
 
 class ProfileManager
   attr_reader :profiles_data, :paths
+  attr_accessor :optList
   def initialize
+    @optList={}
     @yaml = ""
     @profile_data = {}
     @paths = []
@@ -55,7 +57,7 @@ class ProfileManager
     destination = profile['destination']
     source = profile['source']
     
-    options = %w|--numeric-ids --safe-links --executability -auxzSvLE|
+    options = %w|--numeric-ids --safe-links --executability -axzSvLE|
     # --numeric-ids               don't map uid/gid values by user/group name
     # --safe-links                ignore symlinks that point outside the tree
     # -a, --archive               recursion and preserve almost everything (-rlptgoD)
@@ -67,12 +69,17 @@ class ProfileManager
     # -E, --extended-attributes copy extended attributes, resource forks
     # --executability         preserve executability
     
-    if profile['delete']
+    if profile['delete'] or (profile['delete'].nil? and optList['delete'])
       options << "--delete"
       # --delete                  delete extraneous files from dest dirs
     end
     
-    if profile['dry']
+    if profile['update'] or (profile['update'].nil? and optList['update'])
+      options << "-u"
+      # -u, --update                skip files that are newer on the receiver
+    end
+    
+    if profile['dry'] or (profile['dry'].nil? and optList['dry'])
       options << "--dry-run"
       # --delete                  delete extraneous files from dest dirs
     end
