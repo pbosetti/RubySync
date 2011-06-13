@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <Growl/Growl.h>
 
 @interface DockStatusManager : NSObject {
 @private

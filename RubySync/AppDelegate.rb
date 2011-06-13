@@ -83,6 +83,7 @@ class AppDelegate < DockStatusManager
   end
   
   def applicationDidFinishLaunching(a_notification)
+    super
     @yamlArea.setFont NSFont.fontWithName("Menlo", size:10)
     @msgArea.setFont NSFont.fontWithName("Menlo", size:10)
     @profileManager = ProfileManager.new
@@ -180,6 +181,16 @@ class AppDelegate < DockStatusManager
             while out = reader.gets do
               @msgArea.performSelectorOnMainThread "insertText:", withObject:out, waitUntilDone:false 
             end
+            pid, status = Process.wait2
+            if status.exitstatus != 0 then
+              GrowlApplicationBridge.notifyWithTitle("Rsync error",
+                                                     description:"Rsync on profile #{prof} failed, check log pane",
+                                                     notificationName:"Rsync failed",
+                                                     iconData:NSData.data,
+                                                     priority:0,
+                                                     isSticky:false,
+                                                     clickContext:nil)
+            end
             @rsync_pid = nil
             self.performSelectorOnMainThread("setStatusText:",
                                              withObject:"Profile #{prof} successfully performed!",
@@ -188,6 +199,13 @@ class AppDelegate < DockStatusManager
           end
         rescue
           puts "Error #{$!}"
+          GrowlApplicationBridge.notifyWithTitle("Rsync error",
+                                                 description:"Rsync on profile #{activeProfile} failed, check log pane",
+                                                 notificationName:"Rsync failed",
+                                                 iconData:NSData.data,
+                                                 priority:0,
+                                                 isSticky:false,
+                                                 clickContext:nil)
         end
         self.performSelectorOnMainThread("setRsyncRunning:",
                                          withObject:false,
@@ -195,6 +213,13 @@ class AppDelegate < DockStatusManager
         closeButton.performSelectorOnMainThread("setEnabled:",
                                                 withObject:true,
                                                 waitUntilDone:true)
+        GrowlApplicationBridge.notifyWithTitle("Rsync completed",
+                                               description:"Rsync on profile #{activeProfile} completed",
+                                               notificationName:"Rsync completed",
+                                               iconData:NSData.data,
+                                               priority:0,
+                                               isSticky:false,
+                                               clickContext:nil)
         @abort = false
         puts "Thread exiting"
       end

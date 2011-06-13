@@ -26,6 +26,26 @@
     [super dealloc];
 }
 
+- (void)applicationDidFinishLaunching:(NSNotification *)a_notification {
+	NSBundle *myBundle = [NSBundle bundleForClass:[DockStatusManager class]];
+	NSString *growlPath = [[myBundle privateFrameworksPath] stringByAppendingPathComponent:@"Growl.framework"];
+	NSBundle *growlBundle = [NSBundle bundleWithPath:growlPath];
+  
+	if (growlBundle && [growlBundle load]) {
+    [GrowlApplicationBridge setGrowlDelegate:self];
+    [GrowlApplicationBridge notifyWithTitle:@"RubySync started"
+                                description:@"RubySync application successfully started"
+                           notificationName:@"RubySync started"
+                                   iconData:[NSData data]
+                                   priority:0
+                                   isSticky:NO
+                               clickContext:nil];
+  }
+	else {
+		NSLog(@"ERROR: Could not load Growl.framework");
+	}
+}
+
 - (void) setDockStatus: (BOOL)doShow {
   // this should be called from the application delegate's applicationDidFinishLaunching
   // method or from some controller object's awakeFromNib method

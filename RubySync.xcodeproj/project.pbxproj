@@ -20,6 +20,9 @@
 		88A0976613A19A0B00DF7A0E /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976513A19A0B00DF7A0E /* menuIcon.png */; };
 		88A0976813A19A7100DF7A0E /* menuIcon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976713A19A7100DF7A0E /* menuIcon_small.png */; };
 		88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */; };
+		88E7102013A5C83200DE25DF /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
+		88E7102313A5C85B00DE25DF /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
+		88E7102513A5C95400DE25DF /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 88E7102413A5C95400DE25DF /* Growl Registration Ticket.growlRegDict */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +34,19 @@
 			remoteInfo = RubySync;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88E7102213A5C85600DE25DF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				88E7102313A5C85B00DE25DF /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		888782BE13A4539100A55ACA /* DockStatusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockStatusManager.h; sourceTree = "<group>"; };
@@ -52,6 +68,8 @@
 		88A0976713A19A7100DF7A0E /* menuIcon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon_small.png; sourceTree = "<group>"; };
 		88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = ../../../../Library/Frameworks/MacRuby.framework; sourceTree = "<group>"; };
 		88E7101513A5ADB600DE25DF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		88E7101F13A5C83200DE25DF /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
+		88E7102413A5C95400DE25DF /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +80,7 @@
 				88975A9E1396E19600D3E4E7 /* Cocoa.framework in Frameworks */,
 				88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */,
 				888782C313A4578D00A55ACA /* Carbon.framework in Frameworks */,
+				88E7102013A5C83200DE25DF /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +108,7 @@
 		88975A9C1396E19600D3E4E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88E7101F13A5C83200DE25DF /* Growl.framework */,
 				888782C213A4578C00A55ACA /* Carbon.framework */,
 				88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */,
 				88975A9D1396E19600D3E4E7 /* Cocoa.framework */,
@@ -129,6 +149,7 @@
 				88A0976513A19A0B00DF7A0E /* menuIcon.png */,
 				88A0976313A196AE00DF7A0E /* RubySync.icns */,
 				88975AAC1396E19600D3E4E7 /* MainMenu.xib */,
+				88E7102413A5C95400DE25DF /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -168,6 +189,7 @@
 				88975A951396E19500D3E4E7 /* Sources */,
 				88975A961396E19500D3E4E7 /* Frameworks */,
 				88975A971396E19500D3E4E7 /* Resources */,
+				88E7102213A5C85600DE25DF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -217,6 +239,7 @@
 				88A0976413A196AE00DF7A0E /* RubySync.icns in Resources */,
 				88A0976613A19A0B00DF7A0E /* menuIcon.png in Resources */,
 				88A0976813A19A7100DF7A0E /* menuIcon_small.png in Resources */,
+				88E7102513A5C95400DE25DF /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +322,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
@@ -316,6 +343,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
