@@ -66,7 +66,7 @@ class Preferences < Hash
   end
 end
 
-class AppDelegate
+class AppDelegate < DockStatusManager
   attr_accessor :ready, :rsyncRunning
   attr_accessor :window, :mainMenu, :application, :quitMenuItem
   attr_accessor :yamlArea, :msgArea
@@ -78,7 +78,7 @@ class AppDelegate
   attr_accessor :prefs
   
   @@defaultFile = "#{ENV['HOME']}/.rbackup.yml"
-  def initialize
+  def awakeFromNib
     @prefs = Preferences.new
   end
   
@@ -86,8 +86,7 @@ class AppDelegate
     @yamlArea.setFont NSFont.fontWithName("Menlo", size:10)
     @msgArea.setFont NSFont.fontWithName("Menlo", size:10)
     @profileManager = ProfileManager.new
-    @afs = DockStatusManager.new
-    @afs.setDockStatus(prefs["appMode"] == 1)
+    self.setDockStatus(prefs["appMode"] == 1)
     
     @configSelector.removeAllItems
     @yamlArea.insertText prefs["yaml_string"]
