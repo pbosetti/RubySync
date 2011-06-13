@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		888782BE13A4539100A55ACA /* DockStatusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DockStatusManager.h; sourceTree = "<group>"; };
+		888782BE13A4539100A55ACA /* DockStatusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockStatusManager.h; sourceTree = "<group>"; };
 		888782BF13A4539100A55ACA /* DockStatusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DockStatusManager.m; sourceTree = "<group>"; };
 		888782C213A4578C00A55ACA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 		888E7E63139D7D80008D706F /* profileManager.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = profileManager.rb; sourceTree = "<group>"; };
@@ -51,6 +51,7 @@
 		88A0976513A19A0B00DF7A0E /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
 		88A0976713A19A7100DF7A0E /* menuIcon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon_small.png; sourceTree = "<group>"; };
 		88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = ../../../../Library/Frameworks/MacRuby.framework; sourceTree = "<group>"; };
+		88E7101513A5ADB600DE25DF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +71,7 @@
 		88975A8E1396E19500D3E4E7 = {
 			isa = PBXGroup;
 			children = (
+				88E7101513A5ADB600DE25DF /* README.md */,
 				88975AA21396E19600D3E4E7 /* RubySync */,
 				88975A9C1396E19600D3E4E7 /* Frameworks */,
 				88975A9A1396E19600D3E4E7 /* Products */,
