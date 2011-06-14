@@ -60,7 +60,7 @@ class ProfileManager
     destination = profile['destination']
     source = profile['source']
     
-    options = %w|--numeric-ids --safe-links --executability -axzSvLE|
+    options = %w|--numeric-ids --safe-links --executability -axzSvlE|
     # --numeric-ids               don't map uid/gid values by user/group name
     # --safe-links                ignore symlinks that point outside the tree
     # -a, --archive               recursion and preserve almost everything (-rlptgoD)
@@ -69,6 +69,7 @@ class ProfileManager
     # -z, --compress              compress file data during the transfer
     # -S, --sparse                handle sparse files efficiently
     # -v, --verbose               verbose
+    # -l, --links                 copy symlinks as symlinks
     # -E, --extended-attributes copy extended attributes, resource forks
     # --executability         preserve executability
     
