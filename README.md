@@ -1,6 +1,6 @@
 RubySync: not-so-friendly rsync GUI
 ===================================
-RubySync is a GUI frontend to `rsync` tasks. It is inspired by (and shares some code from) Winton's `rbackup` Ruby gem. RubySync mostly respects the same profile syntax as defined by Winton's work.
+RubySync is a GUI frontend to `rsync` tasks. It is inspired by (and shares some code from) [Winton's `rbackup`](http://github.com/winton/rbackup) Ruby gem. RubySync mostly respects the same profile syntax as defined by Winton's work.
 
 How-To
 ------
@@ -19,3 +19,7 @@ Once defined the profiles, click on the **Validate** button: if the button is va
 Preferences
 -----------
 The preference pane gives the possibility to switch from standard app mode to menubar item. Moreover, it allows to select the default behavior for delete, update and dry options, *i.e.* what to do when a profile lacks of explicit option keys.
+
+Growl
+-----
+RubySync supports Growl notifications, provided you have [Growl installed](http://growl.info).

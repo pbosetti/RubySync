@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        [NSApp activateIgnoringOtherApps:YES];
     }
     
     return self;

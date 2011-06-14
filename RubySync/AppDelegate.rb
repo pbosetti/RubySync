@@ -40,7 +40,7 @@ EXAMPLE_STRING
 class Preferences < Hash
   def initialize
     @userDefaults = NSUserDefaults.standardUserDefaults
-    self["rsyncOpts"] = (userDef("defaults") || {
+    self["rsyncOpts"] = (userDef("rsyncOpts") || {
       "update"   => false,
       "delete" => false,
       "dry"   => false
@@ -78,8 +78,10 @@ class AppDelegate < DockStatusManager
   attr_accessor :prefs
   
   @@defaultFile = "#{ENV['HOME']}/.rbackup.yml"
-  def awakeFromNib
+  def init
+    super
     @prefs = Preferences.new
+    self
   end
   
   def applicationDidFinishLaunching(a_notification)
