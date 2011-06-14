@@ -69,7 +69,7 @@ end
 
 class AppDelegate < DockStatusManager
   attr_accessor :ready, :rsyncRunning
-  attr_accessor :window, :mainMenu, :application, :quitMenuItem
+  attr_accessor :window, :mainMenu, :application, :quitMenuItem, :profilesListMenu
   attr_accessor :yamlArea, :msgArea
   attr_accessor :configSelector, :validateButton
   attr_accessor :statusText
@@ -138,6 +138,13 @@ class AppDelegate < DockStatusManager
         self.setStatusText "Valid configuration. Select profile and click Rsync button."
         @configSelector.addItemsWithTitles @profileManager.paths
         @configSelector.selectItemAtIndex 0
+        @profilesListMenu.removeAllItems
+        @profileManager.paths.each do |path|
+          menuItem = NSMenuItem.alloc.initWithTitle path,
+            action: 'run:',
+            keyEquivalent: ''
+          @profilesListMenu.addItem menuItem
+        end
         self.setReady true
         prefs["yaml_string"] = @yamlArea.textStorage.mutableString
         prefs.save
@@ -147,6 +154,7 @@ class AppDelegate < DockStatusManager
       end
     when NSOffState
       @configSelector.removeAllItems
+      @profilesListMenu.removeAllItems
       self.setStatusText "Edit configuration, then click 'Validate!'"
       sender.setTitle "Validate!"
       self.setReady false
@@ -159,7 +167,11 @@ class AppDelegate < DockStatusManager
     if rsyncRunning then
       self.setStatusText "rsync already running: wait for termination."
     else
-      activeProfile = @configSelector.titleOfSelectedItem
+      if (sender.class == NSMenuItem) then
+        activeProfile = sender.title
+      else
+        activeProfile = @configSelector.titleOfSelectedItem
+      end
       now = Time.now.to_s
       prefs.setObject now, :forKey => :lastSyncDate
       prefs.setObject activeProfile, :forKey => :lastSyncProfile
