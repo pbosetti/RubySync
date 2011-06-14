@@ -18,7 +18,7 @@ Once defined the profiles, click on the **Validate** button: if the button is va
 
 Preferences
 -----------
-The preference pane gives the possibility to switch from standard app mode to menubar item. Moreover, it allows to select the default behavior for delete, update and dry options, *i.e.* what to do when a profile lacks of explicit option keys.
+The preference pane gives the possibility to switch from standard app mode to menubar item. Moreover, it allows to select the default behavior for `delete`, `update`, and `dry` options, *i.e.* what to do when a profile lacks of explicit option keys.
 
 Growl
 -----
