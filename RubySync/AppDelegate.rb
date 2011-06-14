@@ -49,6 +49,7 @@ class Preferences < Hash
     self["yaml_string"] = (userDef("yaml_string") || EXAMPLE)
     self["lastSyncDate"] = (userDef("lastSyncDate") || "Unknown")
     self["lastSyncProfile"] = (userDef("lastSyncProfile") || "Unknown")
+    self["validateButton"] = (userDef("validateButton") || NSOffState)
   end
   
   def save
@@ -70,7 +71,7 @@ class AppDelegate < DockStatusManager
   attr_accessor :ready, :rsyncRunning
   attr_accessor :window, :mainMenu, :application, :quitMenuItem
   attr_accessor :yamlArea, :msgArea
-  attr_accessor :configSelector
+  attr_accessor :configSelector, :validateButton
   attr_accessor :statusText
   attr_accessor :splitView
   attr_accessor :messageLog
@@ -105,6 +106,8 @@ class AppDelegate < DockStatusManager
     lastSyncProfile = prefs["lastSyncProfile"]
     @lastSyncMenuItem.setTitle "Last Sync: #{lastSyncDate}"
     @lastProfileMenuItem.setTitle "Last Profile: #{lastSyncProfile}"
+    @validateButton.setState prefs["validateButton"]
+    self.validate(@validateButton)
   end
   
   def activateStatusMenu
@@ -148,6 +151,7 @@ class AppDelegate < DockStatusManager
       sender.setTitle "Validate!"
       self.setReady false
     end
+    prefs["validateButton"] = sender.state
   end
   
   def run(sender)
