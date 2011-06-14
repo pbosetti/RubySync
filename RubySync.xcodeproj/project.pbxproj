@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88502C1113A7BF46004C094C /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
+		88502C1313A7BF83004C094C /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
 		888782C113A4546200A55ACA /* DockStatusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 888782BF13A4539100A55ACA /* DockStatusManager.m */; };
 		888782C313A4578D00A55ACA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888782C213A4578C00A55ACA /* Carbon.framework */; };
 		888E7E64139D7D80008D706F /* profileManager.rb in Resources */ = {isa = PBXBuildFile; fileRef = 888E7E63139D7D80008D706F /* profileManager.rb */; };
@@ -20,8 +22,6 @@
 		88A0976613A19A0B00DF7A0E /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976513A19A0B00DF7A0E /* menuIcon.png */; };
 		88A0976813A19A7100DF7A0E /* menuIcon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976713A19A7100DF7A0E /* menuIcon_small.png */; };
 		88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */; };
-		88E7102013A5C83200DE25DF /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
-		88E7102313A5C85B00DE25DF /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
 		88E7102513A5C95400DE25DF /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 88E7102413A5C95400DE25DF /* Growl Registration Ticket.growlRegDict */; };
 /* End PBXBuildFile section */
 
@@ -36,13 +36,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		88E7102213A5C85600DE25DF /* CopyFiles */ = {
+		88502C1213A7BF77004C094C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				88E7102313A5C85B00DE25DF /* Growl.framework in CopyFiles */,
+				88502C1313A7BF83004C094C /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +80,7 @@
 				88975A9E1396E19600D3E4E7 /* Cocoa.framework in Frameworks */,
 				88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */,
 				888782C313A4578D00A55ACA /* Carbon.framework in Frameworks */,
-				88E7102013A5C83200DE25DF /* Growl.framework in Frameworks */,
+				88502C1113A7BF46004C094C /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +189,7 @@
 				88975A951396E19500D3E4E7 /* Sources */,
 				88975A961396E19500D3E4E7 /* Frameworks */,
 				88975A971396E19500D3E4E7 /* Resources */,
-				88E7102213A5C85600DE25DF /* CopyFiles */,
+				88502C1213A7BF77004C094C /* CopyFiles */,
 			);
 			buildRules = (
 			);

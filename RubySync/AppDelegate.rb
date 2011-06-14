@@ -130,7 +130,10 @@ class AppDelegate < DockStatusManager
   end
   
   def validate(sender)
-    case sender.state
+    if sender.class == NSMenuItem
+      @validateButton.setState NSOnState
+    end
+    case @validateButton.state
     when NSOnState
       begin
         @profileManager.load @yamlArea.textStorage.mutableString
@@ -155,6 +158,7 @@ class AppDelegate < DockStatusManager
     when NSOffState
       @configSelector.removeAllItems
       @profilesListMenu.removeAllItems
+      @profilesListMenu.addItemWithTitle "Validate", action: 'validate:', keyEquivalent: ''
       self.setStatusText "Edit configuration, then click 'Validate!'"
       sender.setTitle "Validate!"
       self.setReady false
