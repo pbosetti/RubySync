@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8850106A13A93D4B00FB23B9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8850106913A93D4B00FB23B9 /* Carbon.framework */; };
+		8850106C13A93DBA00FB23B9 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8850106B13A93DBA00FB23B9 /* MacRuby.framework */; };
 		88502C1113A7BF46004C094C /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
 		88502C1313A7BF83004C094C /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88E7101F13A5C83200DE25DF /* Growl.framework */; };
 		888782C113A4546200A55ACA /* DockStatusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 888782BF13A4539100A55ACA /* DockStatusManager.m */; };
-		888782C313A4578D00A55ACA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888782C213A4578C00A55ACA /* Carbon.framework */; };
 		888E7E64139D7D80008D706F /* profileManager.rb in Resources */ = {isa = PBXBuildFile; fileRef = 888E7E63139D7D80008D706F /* profileManager.rb */; };
 		88975A9E1396E19600D3E4E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88975A9D1396E19600D3E4E7 /* Cocoa.framework */; };
 		88975AA71396E19600D3E4E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88975AA51396E19600D3E4E7 /* InfoPlist.strings */; };
@@ -21,7 +22,6 @@
 		88A0976413A196AE00DF7A0E /* RubySync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976313A196AE00DF7A0E /* RubySync.icns */; };
 		88A0976613A19A0B00DF7A0E /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976513A19A0B00DF7A0E /* menuIcon.png */; };
 		88A0976813A19A7100DF7A0E /* menuIcon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A0976713A19A7100DF7A0E /* menuIcon_small.png */; };
-		88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */; };
 		88E7102513A5C95400DE25DF /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 88E7102413A5C95400DE25DF /* Growl Registration Ticket.growlRegDict */; };
 /* End PBXBuildFile section */
 
@@ -49,9 +49,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8850106913A93D4B00FB23B9 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		8850106B13A93DBA00FB23B9 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = ../../../Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		888782BE13A4539100A55ACA /* DockStatusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockStatusManager.h; sourceTree = "<group>"; };
 		888782BF13A4539100A55ACA /* DockStatusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DockStatusManager.m; sourceTree = "<group>"; };
-		888782C213A4578C00A55ACA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 		888E7E63139D7D80008D706F /* profileManager.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = profileManager.rb; sourceTree = "<group>"; };
 		888E7E76139DBAB2008D706F /* test.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = test.rb; sourceTree = "<group>"; };
 		88975A991396E19600D3E4E7 /* RubySync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RubySync.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +67,6 @@
 		88A0976313A196AE00DF7A0E /* RubySync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = RubySync.icns; sourceTree = SOURCE_ROOT; };
 		88A0976513A19A0B00DF7A0E /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
 		88A0976713A19A7100DF7A0E /* menuIcon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon_small.png; sourceTree = "<group>"; };
-		88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = ../../../../Library/Frameworks/MacRuby.framework; sourceTree = "<group>"; };
 		88E7101513A5ADB600DE25DF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		88E7101F13A5C83200DE25DF /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		88E7102413A5C95400DE25DF /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -78,9 +78,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				88975A9E1396E19600D3E4E7 /* Cocoa.framework in Frameworks */,
-				88AC4B601399C7BE00D4E344 /* MacRuby.framework in Frameworks */,
-				888782C313A4578D00A55ACA /* Carbon.framework in Frameworks */,
 				88502C1113A7BF46004C094C /* Growl.framework in Frameworks */,
+				8850106A13A93D4B00FB23B9 /* Carbon.framework in Frameworks */,
+				8850106C13A93DBA00FB23B9 /* MacRuby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,13 +108,14 @@
 		88975A9C1396E19600D3E4E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8850106B13A93DBA00FB23B9 /* MacRuby.framework */,
+				8850106913A93D4B00FB23B9 /* Carbon.framework */,
 				88E7101F13A5C83200DE25DF /* Growl.framework */,
-				888782C213A4578C00A55ACA /* Carbon.framework */,
-				88AC4B5F1399C7BE00D4E344 /* MacRuby.framework */,
 				88975A9D1396E19600D3E4E7 /* Cocoa.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
+			path = /Users/p4010/Dropbox/WorkInProgress/RubySync;
+			sourceTree = "<absolute>";
 		};
 		88975AA21396E19600D3E4E7 /* RubySync */ = {
 			isa = PBXGroup;

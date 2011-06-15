@@ -23,3 +23,10 @@ The preference pane gives the possibility to switch from standard app mode to me
 Growl
 -----
 RubySync supports Growl notifications, provided you have [Growl installed](http://growl.info).
+
+Experimental features
+---------------------
+The experimental branch now supports *mirroring*. It means that if a profile has the `:mirror` key set to `true`, after the first forth synchornization, a backward synchronization will automatically occour. In this case the `--delete` option is automatically disabled and the `--update` option is enforced, regardless to any other settings.
+
+*WARNING 1*: this only works when the `:source` is a local path and the `:destination` is a remote ssh address.
+*WARNING 2*: no check whatsoever is made on profile meaningless, so loss of data is possible! before trying, enable the `:dry` key!

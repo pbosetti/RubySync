@@ -59,8 +59,9 @@ class ProfileManager
     exclude = []
     destination = profile['destination']
     source = profile['source']
+    options = []
     
-    options = %w|--numeric-ids --safe-links --executability -axzSvlE|
+    options << %w|--numeric-ids --safe-links --executability -axzSvlE|
     # --numeric-ids               don't map uid/gid values by user/group name
     # --safe-links                ignore symlinks that point outside the tree
     # -a, --archive               recursion and preserve almost everything (-rlptgoD)
@@ -73,12 +74,12 @@ class ProfileManager
     # -E, --extended-attributes copy extended attributes, resource forks
     # --executability         preserve executability
     
-    if profile['delete'] or (profile['delete'].nil? and optList['delete'])
+    if (profile['delete'] or (profile['delete'].nil? and optList['delete'])) and not profile['mirror']
       options << "--delete"
       # --delete                  delete extraneous files from dest dirs
     end
     
-    if profile['update'] or (profile['update'].nil? and optList['update'])
+    if (profile['update'] or (profile['update'].nil? and optList['update'])) or profile['mirror']
       options << "-u"
       # -u, --update                skip files that are newer on the receiver
     end
@@ -109,10 +110,25 @@ class ProfileManager
     # --exclude=PATTERN         use one of these for each file you want to exclude
     # --include-from=FILE       don't exclude patterns listed in FILE
 
-    args = [options, inc1ude, exclude, esc(source), esc(destination)].flatten
+    args = {
+      forth: [options, inc1ude, exclude, esc(source), esc(destination)].flatten,
+      back: nil
+    }
+    
+    if profile['mirror'] then
+      source, destination = swapCounterparts([source, destination])
+      args[:back] = [options, inc1ude, exclude, esc(source), esc(destination)].flatten
+    end
+    args
   end
   
   private
+  def swapCounterparts(ary)
+    a, b = ary
+    basename = File.basename(a)
+    ["#{b}/#{basename}",  File.dirname(a)]
+  end
+  
   def esc(paths)
     paths = [ paths ].flatten
     paths.collect  { |path| 

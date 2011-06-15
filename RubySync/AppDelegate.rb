@@ -195,25 +195,34 @@ class AppDelegate < DockStatusManager
             @msgArea.performSelectorOnMainThread("insertText:",
                                                  withObject:"\n\nStarting rsync with profile #{prof}\n",
                                                  waitUntilDone:true)
-            cmd = "rsync " + (@profileManager.rsync_args(args) * ' ')
-            @msgArea.performSelectorOnMainThread "insertText:", withObject:"#{cmd}\n", waitUntilDone:true 
-            reader, writer = IO.pipe 
-            @rsync_pid = spawn(cmd, [ STDERR, STDOUT ] => writer) 
-            writer.close
-            while out = reader.gets do
-              @msgArea.performSelectorOnMainThread "insertText:", withObject:out, waitUntilDone:false 
+            
+            # BEGIN OPERATION
+            argsHash = @profileManager.rsync_args(args)
+            argsHash.each do |dir, flags|
+              unless flags.nil? or flags.size == 0 then
+                cmd = "rsync " + (flags * ' ')
+                @msgArea.performSelectorOnMainThread "insertText:", withObject:"#{cmd}\n", waitUntilDone:true 
+                reader, writer = IO.pipe 
+                @rsync_pid = spawn(cmd, [ STDERR, STDOUT ] => writer) 
+                writer.close
+                while (out = reader.gets) do
+                  @msgArea.performSelectorOnMainThread("insertText:", withObject:out, waitUntilDone:false)
+                end
+                pid, status = Process.wait2
+                if status.exitstatus != 0 then
+                  GrowlApplicationBridge.notifyWithTitle("Rsync error",
+                                                         description:"Rsync on profile #{prof} failed, check log pane",
+                                                         notificationName:"Rsync failed",
+                                                         iconData:NSData.data,
+                                                         priority:0,
+                                                         isSticky:false,
+                                                         clickContext:nil)
+                end
+                @rsync_pid = nil
+              end
             end
-            pid, status = Process.wait2
-            if status.exitstatus != 0 then
-              GrowlApplicationBridge.notifyWithTitle("Rsync error",
-                                                     description:"Rsync on profile #{prof} failed, check log pane",
-                                                     notificationName:"Rsync failed",
-                                                     iconData:NSData.data,
-                                                     priority:0,
-                                                     isSticky:false,
-                                                     clickContext:nil)
-            end
-            @rsync_pid = nil
+            # END OF OPERATION
+              
             self.performSelectorOnMainThread("setStatusText:",
                                              withObject:"Profile #{prof} successfully performed!",
                                              waitUntilDone:true)
